@@ -1,0 +1,5 @@
+MIN = PS*40 + PC*80 + PF*100;
+
+!Soldiers; PS + 1*PC + 2  *PF > 4.5;
+!Trains;        1*PC + 1  *PF > 3.5;
+!Cars;          1*PC + 1.5*PF > 2;

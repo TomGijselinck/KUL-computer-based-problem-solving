@@ -1,0 +1,6 @@
+MAX = (27 - 22.5)*Soldiers + (21 - 17.5)*Trains + (15 - 13)*Cars + 9*Airplanes;
+
+Soldiers < 40;
+
+!Carpentry;  1*Soldiers + 1*Trains + 1*Cars   + 2*Airplanes < 80;
+!Fininshing; 2*Soldiers + 1*Trains + 1.5*Cars + 3*Airplanes < 100;
