@@ -1,0 +1,21 @@
+MODEL:
+  SETS:
+    LIST/1..5/:X, LAW, HEALTH, BUSINESS, CRAFT, COST;
+  ENDSETS
+
+  DATA:
+    LAW      = 28 9 6 2 8;
+    HEALTH   = 4 29 3 4 9;
+    BUSINESS = 7 11 34 6 12;
+    CRAFT    = 2 3 18 20 14;
+    COST     = 41 52 61 32 43;
+  ENDDATA
+
+  MIN = @SUM(LIST(I) : X(I)*COST(I) );
+  
+  @SUM( LIST(I) : X(I)*LAW(I) ) > 20;
+  @SUM( LIST(I) : X(I)*HEALTH(I) ) > 18;
+  @SUM( LIST(I) : X(I)*BUSINESS(I) ) > 22;
+  @SUM( LIST(I) : X(I)*CRAFT(I) ) > 20;
+
+  @FOR( LIST(I) : @BIN(X(I)) );

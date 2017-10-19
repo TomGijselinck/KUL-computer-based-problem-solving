@@ -1,0 +1,19 @@
+MODEL:
+  SETS:
+    DAY/monday tuesday wednesday thursday friday saturday sunday/: F, P, NEED;
+  ENDSETS
+
+  DATA:
+    NEED = 17 13 15 19 14 16 11;
+  ENDDATA
+  
+  MIN = @SUM( DAY(I): F(I)*15*8 + P(I)*10*4 );
+
+  @FOR( DAY(I): F(I)*8 + P(I)*4 = NEED(I)*8 );
+
+  !limit the total part-time labor to 25 % of the weekly labor requirements;
+  @SUM(DAY(I): P(I)*4) < 0.25*@SUM(DAY(I): NEED(I)*8);
+
+  @FOR( DAY(I): @GIN(F(I)) );
+  @FOR( DAY(I): @GIN(P(I)) );
+END

@@ -1,0 +1,8 @@
+MIN = 50000*comedy + 100000*football;
+
+7*comedy +  2*football > 28;
+2*comedy + 12*football > 24;
+
+!number of slots of 1 minute commercials must be integers;
+@GIN(comedy);
+@GIN(football);
