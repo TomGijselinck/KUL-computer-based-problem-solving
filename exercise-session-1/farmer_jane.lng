@@ -1,0 +1,20 @@
+MODEL:
+  SETS:
+    CROP/wheat corn/: X, LABOR, FERTILIZER, PROFIT;
+  ENDSETS
+
+  DATA:
+    LABOR = 3 2;
+    FERTILIZER = 2 4;
+    PROFIT = 200 300;
+    MAX_SIZE = 45;
+    MAX_WORKERS = 100;
+    MAX_FERTILIZER = 120;
+  ENDDATA
+
+  MAX = @SUM( CROP(I) : PROFIT(I)*X(I) );
+  
+  @SUM( CROP(I) : LABOR(I)*X(I) ) < MAX_WORKERS;
+  @SUM( CROP(I) : FERTILIZER(I)*X(I) ) < MAX_FERTILIZER;
+  @SUM( CROP(I) : X(I) ) < MAX_SIZE;
+    
