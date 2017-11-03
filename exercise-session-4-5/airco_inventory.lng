@@ -1,0 +1,16 @@
+model:
+  data:
+    max_production = 240;
+  enddata
+  
+  min=production_cost + inventory_cost + backlog_cost;
+  
+  production_cost = @SUM( quarter(i) : production_cost(i)*production(i) );
+  inventory_cost = @SUM( quarter(i) : inventory_cost(i)*inventory(i) );
+  backlog_cost = @SUM( quarter(i) : backlog_cost(i)*inventory(i) );
+
+  @FOR( quarter(i) : production(i) < max_production );
+  
+  @SUM( quarter(i) : production(i) - demand(i) ) = 0;
+
+  !@FOR( quarter(i) : );;
