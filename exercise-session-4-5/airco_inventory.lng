@@ -13,4 +13,6 @@ model:
   
   @SUM( quarter(i) : production(i) - demand(i) ) = 0;
 
-  !@FOR( quarter(i) : );;
+  @FOR( quarter(i) : overproduction(i)*(production(i) - demand(i)) = inventory(i) );
+
+  @FOR( quarter(i) : @BIN(overproduction(i)) );
