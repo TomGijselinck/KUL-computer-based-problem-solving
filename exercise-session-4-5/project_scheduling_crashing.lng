@@ -1,0 +1,39 @@
+ ! critical path template;
+
+MODEL:
+SETS:
+  TASK: NORMAL, FAST, COST, EF, ACTUAL;
+  PRED(TASK, TASK):;
+ENDSETS
+
+DATA:
+  TASK, NORMAL, FAST, COST = 
+  A 6 1 10
+  B 9 4 20
+  C 8 3 3
+  D 7 2 30
+  E 10 5 40
+  F 12 7 50;
+
+  PRED = 
+   A,C 
+   B,C
+   A,D
+   B,D
+   C,F
+   D,E
+   E,F;
+
+  DUEDATE = 25;
+ENDDATA
+
+MIN=@SUM(TASK(I) : COST(I)*(NORMAL(I) - ACTUAL(I)));
+
+@FOR(TASK(I) : EF(I) >= ACTUAL(I));
+@FOR(PRED(I,J) : EF(J) >= EF(I) + ACTUAL(J));
+
+@FOR(TASK(I) : @BND(FAST(I), ACTUAL(I), NORMAL(I)));
+
+EF( @SIZE(TASK)) <= DUEDATE;
+
+END
